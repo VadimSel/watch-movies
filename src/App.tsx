@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import "./App.css"
+import { Route, Routes } from "react-router-dom";
+import { PreviewPage } from "./components/previewPage";
+import { FullPage } from "./components/fullPage";
+import { useState } from "react";
+import { MovieResponse } from "./components/types";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [selectedMovie, setSelectedMovie] = useState<MovieResponse | null>(null);
+
+	return (
+		<Routes>
+			<Route path="/" element={<PreviewPage setSelectedMovie={setSelectedMovie}/>}/>
+			<Route path="/movie" element={<FullPage movie={selectedMovie} />}/>
+		</Routes>
+	);
 }
 
 export default App;
