@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/VadimSel/watch-movies/static/css/main.e6c13ad2.css",
+    "main.js": "/VadimSel/watch-movies/static/js/main.1281cd2e.js",
+    "index.html": "/VadimSel/watch-movies/index.html",
+    "main.e6c13ad2.css.map": "/VadimSel/watch-movies/static/css/main.e6c13ad2.css.map",
+    "main.1281cd2e.js.map": "/VadimSel/watch-movies/static/js/main.1281cd2e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.1281cd2e.js"
+  ]
+}
