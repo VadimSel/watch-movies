@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from "react";
 import { getMovies } from "./getSearchResult";
 import { MovieResponse } from "./types";
 import { useNavigate } from "react-router-dom";
+import s from "./previewPage.module.css";
 
 type PreviewPageProps = {
 	setSelectedMovie: (movie: MovieResponse) => void;
@@ -11,7 +12,7 @@ export const PreviewPage = ({ setSelectedMovie }: PreviewPageProps) => {
 	const [searchValue, setSearchValue] = useState("");
 	const [searchResValue, setSearchResValue] = useState<MovieResponse[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false)
+	const [error, setError] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -20,14 +21,14 @@ export const PreviewPage = ({ setSelectedMovie }: PreviewPageProps) => {
 	};
 
 	const searchSubmit = async () => {
-    if (!searchValue.trim()) {
-      setError(true) 
-      return
-    }
+		if (!searchValue.trim()) {
+			setError(true);
+			return;
+		}
 
 		const res = await getMovies(searchValue);
 		if (res) {
-      setError(false)
+			setError(false);
 			setIsLoading(true);
 			setSearchResValue(res);
 			setIsLoading(false);
@@ -43,31 +44,53 @@ export const PreviewPage = ({ setSelectedMovie }: PreviewPageProps) => {
 
 	return (
 		<div>
-			<input
-				type="text"
-				value={searchValue}
-				onChange={inputHandler}
-				onKeyDown={(e) => {
-					if (e.key === "Enter") {
-						searchSubmit();
-					}
-				}}
-			/>
-			<button onClick={searchSubmit}>Найти фильм</button>
-      {error && 'Введите название фильма'}
-			{isLoading && <p>Идёт загрузка</p>}
-			{searchResValue.map((movie) => {
-				return (
-					<div key={movie.id}>
-						<img src={movie.poster.previewUrl} alt="poster" />
-						<p>
-							Название: {movie.name} ({movie.alternativeName})
-						</p>
-						<p>Год: {movie.year}</p>
-						<button onClick={() => selectedMovieHandler(movie)}>Выбрать фильм</button>
+			{searchResValue.length === 0 ? (
+				<div className={s.searchContainer}>
+					<div className={s.search}>
+						<input
+							className={s.input}
+							type="text"
+							value={searchValue}
+							onChange={inputHandler}
+							onKeyDown={(e) => {
+								if (e.key === "Enter") {
+									searchSubmit();
+								}
+							}}
+						/>
+						<button className={s.button} onClick={searchSubmit}>
+							Найти фильм
+						</button>
+						<div className={s.error}>{error && "Введите название фильма"}</div>
+						{isLoading && <p>Идёт загрузка</p>}
 					</div>
-				);
-			})}
+				</div>
+			) : (
+				searchResValue.map((movie) => {
+					return (
+						<div className={s.resultsContainer}>
+							<div className={s.movieContainer} key={movie.id}>
+								<div className={s.imageContainer}>
+									<img
+										className={s.resultImage}
+										src={movie.poster.previewUrl}
+										alt="poster"
+									/>
+								</div>
+								<div className={s.movieInfo}>
+									<p>
+										Название: {movie.name} ({movie.alternativeName})
+									</p>
+									<p className={s.movieInfoYear}>Год: {movie.year}</p>
+									<button onClick={() => selectedMovieHandler(movie)}>
+										Выбрать фильм
+									</button>
+								</div>
+							</div>
+						</div>
+					);
+				})
+			)}
 		</div>
 	);
 };

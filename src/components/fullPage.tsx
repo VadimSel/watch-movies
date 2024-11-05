@@ -1,5 +1,10 @@
 import { MovieResponse } from "./types";
 
+// Варианты
+// www.kinopoisk.gg
+// www.kinopoiskkk.ru
+// www.kinopoisk.cx
+
 type InfoProps = {
 	movie: MovieResponse | null;
 };
@@ -26,7 +31,13 @@ export const FullPage = ({ movie }: InfoProps) => {
 				)}
 			</p>
 			<p>Описание: {movie.description}</p>
-			<a href={`https://www.kinopoisk.gg/film/${movie.id}`} target="_blank" rel="noopener noreferrer">Смотреть</a>
+			<a
+				href={`https://www.kinopoisk.gg/film/${movie.id}`}
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				Смотреть
+			</a>
 		</div>
 	);
 };
