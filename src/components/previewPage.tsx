@@ -66,31 +66,28 @@ export const PreviewPage = ({ setSelectedMovie }: PreviewPageProps) => {
 					</div>
 				</div>
 			) : (
-				searchResValue.map((movie) => {
-					return (
-						<div className={s.resultsContainer}>
-							<div className={s.movieContainer} key={movie.id}>
-								<div className={s.imageContainer}>
-									<img
-										className={s.resultImage}
-										src={movie.poster.previewUrl}
-										alt="poster"
-									/>
-								</div>
-								<div className={s.movieInfo}>
-									<p>
-										Название: {movie.name} ({movie.alternativeName})
-									</p>
-									<p className={s.movieInfoYear}>Год: {movie.year}</p>
-									<button onClick={() => selectedMovieHandler(movie)}>
-										Выбрать фильм
-									</button>
-								</div>
-							</div>
+				<div className={s.resultsContainer}>
+				{searchResValue.map((movie) => (
+					<div className={s.movieContainer} key={movie.id}>
+						<div className={s.imageContainer}>
+							<img
+								className={s.resultImage}
+								src={movie.poster.previewUrl}
+								alt="poster"
+							/>
 						</div>
-					);
-				})
-			)}
-		</div>
-	);
+						<div className={s.movieInfo}>
+							<span>{movie.name}</span>
+							<span>{movie.alternativeName}</span>
+							<span className={s.movieInfoYear}>Год: {movie.year}</span>
+							<button onClick={() => selectedMovieHandler(movie)}>
+								Выбрать фильм
+							</button>
+						</div>
+					</div>
+				))}
+			</div>
+		)}
+	</div>
+);
 };

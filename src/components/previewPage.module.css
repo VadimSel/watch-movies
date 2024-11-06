@@ -30,18 +30,116 @@
   margin-bottom: -45px;
 }
 
-.resultsContainer {
-  /* outline: 1px solid; */
-  margin: 0 auto;
-  width: 400px;
+@media (max-width: 767px) {
+  .resultsContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .movieContainer {
+    display: flex;
+    gap: 20px;
+    margin: 20px auto;
+  }
+  
+  .imageContainer {
+    height: 115px;
+    width: 75px;
+    overflow: hidden;
+  }
+  
+  .resultImage {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  .movieInfo {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    gap: 5px;
+  }
+  
+  .movieInfo > span:first-child {
+    font-weight: bold;
+  }
+  
+  .movieInfo > span:nth-child(2) {
+    opacity: 0.5;
+  }
+  
+  .movieInfoYear {
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .resultsContainer {
+    outline: 1px solid red;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 2000px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+
+  .movieContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .movieInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .movieInfo > span:first-child {
+    font-weight: bold;
+  }
+
+  .movieInfo > span:nth-child(2) {
+    opacity: 0.5;
+  }
+
+  .movieInfo > button {
+    margin: 10px auto 0 auto;
+    width: 200px;
+    height: 50px;
+  }
+
+  .imageContainer {
+    height: 250px;
+    width: 165px;
+    overflow: hidden;
+  }
+
+  .resultImage {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+
+/* .resultsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .movieContainer {
   display: flex;
-  /* align-items: center; */
-  /* justify-content: center; */
   gap: 20px;
-  margin: 10px auto;
+  margin: 20px auto;
 }
 
 .imageContainer {
@@ -56,14 +154,21 @@
   object-fit: cover;
 }
 
-.movieInfo p, .movieInfo button {
-  margin: 0;
+.movieInfo {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  gap: 5px;
+}
+
+.movieInfo > span:first-child {
+  font-weight: bold;
+}
+
+.movieInfo > span:nth-child(2) {
+  opacity: 0.5;
 }
 
 .movieInfoYear {
-  margin: 12px 0 15px 0 !important
-}
-
-.movieInfo {
-  margin-top: 8px;
-}
+  margin-bottom: 10px;
+} */
