@@ -22,6 +22,11 @@
   max-width: 730px;
 }
 
+.fullPageInfo > button {
+  width: 170px;
+  height: 50px;
+}
+
 .modal {
   height: 100vh;
   width: 100%;
