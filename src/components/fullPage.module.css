@@ -1,20 +1,14 @@
-/* .container {
-  border: 1px solid red;
-  width: 100vw;
-  height: 100vh;
-} */
-
 .fullPageContainer {
-  outline: 1px solid red;
   max-width: 1200px;
   margin: 20px auto;
+  padding: 0 20px;
   display: flex;
   gap: 40px;
 }
 
 .imageContainer {
-  height: 500px;
-  width: 900px;
+  width: 100%;
+  max-width: 430px;
 }
 
 .imageContainer > img {
@@ -24,5 +18,72 @@
 }
 
 .fullPageInfo {
-  border: 1px solid green
+  text-align: center;
+  max-width: 730px;
+}
+
+.modal {
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 90;
+}
+
+.modalContent {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+  border-radius: 2%;
+  max-height: 160px;
+  width: 167px;
+  background-color: white;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 16px 32px 16px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.modalContent > a {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  text-decoration: none;
+  padding: 5px 0;
+}
+
+
+@media (max-width: 810px) {
+  .fullPageContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .imageContainer {
+    margin: 0 auto;
+    max-height: 50vh;
+  }
+
+  .imageContainer > img {
+    object-fit: contain;
+  }
+
+  .fullPageInfo {
+    margin: 0 auto;
+  }
+
+  .fullPageInfo > p:first-child {
+    font-weight: bold;
+  }
+
+  .fullPageInfo > p:nth-child(2) {
+    opacity: 0.5;
+  }
 }
