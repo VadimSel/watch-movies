@@ -1,19 +1,39 @@
 import { MovieResponse } from "./types";
 import s from "./fullPage.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type InfoProps = {
 	movie: MovieResponse | null;
 };
 
 export const FullPage = ({ movie }: InfoProps) => {
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isModalContentOpen, setIsModalContentOpen] = useState(false);
+
 	const urls = [
 		`https://www.kinopoisk.gg/film/${movie?.id}`,
 		`https://www.kinopoiskkk.gg/film/${movie?.id}`,
 		`https://www.kinopoisk.cx/film/${movie?.id}`,
 	];
 
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	useEffect(() => {
+		if (isModalOpen) {
+			document.body.style.overflow = "hidden";
+			setTimeout(() => {
+				setIsModalContentOpen(true);
+			});
+		} else {
+			document.body.style.overflow = "";
+			setIsModalContentOpen(false);
+		}
+	}, [isModalOpen]);
+
+	const closeModal = () => {
+		setIsModalContentOpen(false)
+		setTimeout(() => {
+			setIsModalOpen(false)
+		}, 200)
+	}
 
 	if (!movie) {
 		return null;
@@ -43,7 +63,10 @@ export const FullPage = ({ movie }: InfoProps) => {
 				</div>
 			</div>
 			{isModalOpen && (
-				<div onClick={() => setIsModalOpen(false)} className={s.modal}>
+				<div
+					onClick={() => closeModal()}
+					className={`${s.modal} ${isModalContentOpen && s.open}`}
+				>
 					<div className={s.modalContent}>
 						<span>Варианты просмотра</span>
 						{urls.map((url, index) => (
